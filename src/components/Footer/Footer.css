@@ -60,7 +60,7 @@
 	.footer__container {
 		flex-direction: column-reverse;
 		gap: 30px;
-		padding-top: 35px;
+		padding-top: 30px;
 	}
 
 	.footer__nav {

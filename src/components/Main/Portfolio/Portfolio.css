@@ -189,7 +189,7 @@
 		flex-direction: column-reverse;
 	}
 	.portfolio__about-container{
-		padding-top: 30px;
+		padding-top: 39px;
 		justify-content: flex-start;
 		text-align: left;
 
@@ -200,14 +200,14 @@
 	}
 
 	.portfolio__subtitle {
-		padding-top: 9px;
+		padding-top: 15px;
 		font-size: 11px;
 		text-align: left;
 	}
 
 	.portfolio__text {
 		font-size: 11px;
-		padding-top: 12px;
+		padding-top: 16px;
 		line-height: 16px;
 	}
 
@@ -222,6 +222,7 @@
 
 	.portfolio__apps-container {
 		padding-top: 30px;
+		gap: 1px;
 	}
 
 	.portfolio__app-title, .portfolio__app-link {

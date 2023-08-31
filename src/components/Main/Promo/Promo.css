@@ -46,6 +46,9 @@
 	.promo {
 		height: 570px;
 	}
+	.promo__container{
+		padding-top: 10px;
+	}
 	.promo__title {
 		font-size: 31px;
 		line-height: 39px; /* 125.806% */
