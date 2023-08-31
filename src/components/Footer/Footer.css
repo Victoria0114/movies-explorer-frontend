@@ -1,5 +1,6 @@
 .footer {
-	padding: 50px 70px 20px;
+	padding: 85px 70px 20px;
+
 	background-color: #FAFAFA;
 	display: flex;
 	flex-direction: column;
@@ -50,7 +51,7 @@
 
 @media screen and (max-width: 425px) {
 	.footer {
-		padding: 60px 10px 20px;
+		padding: 58px 10px 20px;
 	}
 
 	.footer__title, .footer__copyright, .footer__link {
