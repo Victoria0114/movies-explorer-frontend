@@ -1,8 +1,8 @@
-###Фронт дипломного проекта
+### Фронт дипломного проекта
 
 ### Макет light-2
 
-###Домен фронта https://victoria.nomoreparties.co
+### Домен фронта https://victoria.nomoreparties.co
 
 
 
