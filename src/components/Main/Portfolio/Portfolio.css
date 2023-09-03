@@ -1,0 +1,237 @@
+.portfolio {
+	padding: 110px 70px;
+	display: flex;
+	flex-direction: column;
+}
+
+.portfolio__about {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 66px;
+}
+
+.portfolio__about-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.portfolio__title {
+	margin: 0;
+	font-size: 50px;
+	font-weight: 400;
+	line-height: 58px;
+	letter-spacing: -2px;
+}
+
+.portfolio__subtitle {
+	margin: 0;
+	padding-top: 18px;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 20px;
+}
+
+.portfolio__text {
+	margin: 0;
+	padding-top: 26px;
+	max-width: 600px;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 22px;
+}
+
+.portfolio__photo {
+	width: 270px;
+	height: 327px;
+	border-radius: 10px;
+	object-fit: cover;
+}
+
+.portfolio__github-link {
+	text-decoration: none;
+	color: black;
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: 500;
+	padding-top: 100px;
+}
+
+.portfolio__github:hover {
+	opacity: 0.8;
+}
+
+.portfolio__apps-container:hover {
+	opacity: 0.8;
+}
+
+.portfolio__links-title {
+	padding-top: 100px;
+	color: #A0A0A0;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 20px;
+}
+
+.portfolio__apps-container {
+	padding-top: 50px;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.portfolio__app-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.portfolio__app-title {
+	margin: 0;
+	font-size: 30px;
+	font-weight: 400;
+	line-height: 50px;
+	letter-spacing: -1.2px;
+}
+
+.portfolio__app-link {
+	color: #000;
+	font-size: 30px;
+	font-weight: 400;
+	line-height: 60px;
+	letter-spacing: -1.2px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+._underline {
+	border-bottom: 1px solid #E8E8E8;
+	padding-bottom: 10px;
+}
+
+@media screen and (max-width: 768px) {
+	.portfolio {
+		padding: 90px 50px;
+	}
+
+	.portfolio__about-container {
+		max-width: 364px;
+		
+	}
+
+	.portfolio__title {
+		font-size: 40px;
+		line-height: 40px;
+		letter-spacing: -1.6px;
+	}
+
+	.portfolio__subtitle {
+		padding-top: 15px;
+		font-size: 12px;
+	}
+
+	.portfolio__text {
+		font-size: 12px;
+		padding-top: 18px;
+		line-height: 18px;
+	}
+
+	.portfolio__photo {
+		width: 255px;
+		height: 307px;
+	}
+
+	.portfolio__github-link {
+		padding-top: 90px;
+	}
+
+	.portfolio__links-title {
+		padding-top: 90px;
+	}
+
+	.portfolio__apps-container {
+		padding-top: 45px;
+		gap: 14px;
+	}
+
+	.portfolio__app-title, .portfolio__app-link {
+		font-size: 28px;
+	}
+
+	.portfolio__app-link:hover {
+		opacity: 0.8;
+		color: aqua;
+	}
+	._underline{
+		padding-bottom: 15px;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.portfolio__about {
+		flex-direction: column-reverse;
+		align-items: center;
+	}
+	.portfolio__title, .portfolio__subtitle {
+		text-align: center;
+	}
+
+	.portfolio__photo {
+		width: 292px;
+		height: 352px;
+	}
+}
+
+@media screen and (max-width: 425px) {
+	.portfolio {
+		padding: 70px 14px;
+	}
+	.portfolio__about {
+		padding-top: 60px;
+		flex-direction: column-reverse;
+	}
+	.portfolio__about-container{
+		padding-top: 39px;
+		justify-content: flex-start;
+		text-align: left;
+
+	}
+	.portfolio__title {
+		font-size: 30px;
+		text-align: left;
+	}
+
+	.portfolio__subtitle {
+		padding-top: 15px;
+		font-size: 11px;
+		text-align: left;
+	}
+
+	.portfolio__text {
+		font-size: 11px;
+		padding-top: 16px;
+		line-height: 16px;
+	}
+
+	.portfolio__github-link {
+		padding-top: 40px;
+	}
+
+	.portfolio__links-title {
+		padding-top: 70px;
+		font-size: 14px;
+	}
+
+	.portfolio__apps-container {
+		padding-top: 30px;
+		gap: 1px;
+	}
+
+	.portfolio__app-title, .portfolio__app-link {
+		font-size: 18px;
+	}
+
+	._underline {
+		border-bottom: 1px solid #E8E8E8;
+		padding-bottom: 5px;
+	}	
+}
