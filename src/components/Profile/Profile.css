@@ -11,7 +11,7 @@
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	/* justify-content: space-between; */
 }
 
 .profile__data-set {
@@ -26,7 +26,7 @@
 	text-align: center;
 	font-size: 24px;
 	font-weight: 500;
-	padding-bottom: 123px;
+	padding-bottom: 110px;
 }
 
 .profile__data-string {
@@ -47,6 +47,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
+	margin-top: 180px;
 }
 
 .profile__btn {
@@ -71,14 +72,19 @@
 	.profile__container {
 		padding-block: 236px 269px;
 	}
+	.profile__data-set{
+		padding-bottom: 212px;
+	}
 
 	.profile__title {
-		padding-bottom: 96px;
+		padding-bottom: 80px;
 	}
 
 	.profile__buttons {
 		bottom: 269px;
+		margin-top: 0;
 	}
+	
 }
 
 @media screen and (max-width: 425px) {

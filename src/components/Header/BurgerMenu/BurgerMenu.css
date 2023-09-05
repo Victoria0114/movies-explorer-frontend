@@ -62,6 +62,15 @@
 	align-self: flex-end;
 	padding-right: 22px;
 	padding-top: 22px;
+	background-color: white;
+	background-image: url(../../../images/close_icon.svg);
+	border: none;
+	padding: 0;
+	margin-right: 22px;
+	margin-top: 22px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .burger-menu__li {

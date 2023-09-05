@@ -1,5 +1,6 @@
 import React from 'react'; // ?????????
 import { useState } from "react";
+import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import "./App.css";
@@ -23,6 +24,9 @@ function App() {
   const movies = loggedIn ? <Movies /> : <Main /> ;
   const savedMovies = loggedIn ? <SavedMovies /> : <Main />;
   const profile = loggedIn ? <Profile /> : <NotFound />
+
+  useEffect(()=> {
+    document.documentElement.setAttribute('lang','ru')},[])
 
   return (
     <div className="app">

@@ -6,10 +6,10 @@ import MoviesCardList from "./MoviesCardList/MoviesCardList";
 
 function Movies() {
 	return(
-		<section className="movies">
+		<main className="movies">
 			<SearchForm />
 			<MoviesCardList sampleItems={16} />
-		</section>
+		</main>
 	);
 }
 
