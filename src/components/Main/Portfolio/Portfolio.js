@@ -9,7 +9,7 @@ export default function Portfolio() {
   const getWork = (title, link) => {
     return (
       <a 
-        className="portfolio__app-container portfolio__app-link _underline"
+        className="portfolio__app-container portfolio__app-link portfolio__app-link_underline"
         href={link}
         target="_blank"
         rel="noopener noreferrer"

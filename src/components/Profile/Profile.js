@@ -4,7 +4,7 @@ import './Profile.css'
 
 export default function Profile() {
 	const inputName = 'Виктория';
-	const inputEmail = 'почта@mail.ru';
+	const inputEmail = 'pochta@yandex.ru';
 
 	return(
 		<section className="profile">
