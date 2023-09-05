@@ -18,7 +18,7 @@ function BurgerMenu() {
 
   return (
     <div className={`burger-menu ${isOpen ? "open" : ""}`}>
-      <button className="burger__button">
+      <button className="burger-menu__button">
         <img
         onClick={toggleMenu}
         src={iconBurger}

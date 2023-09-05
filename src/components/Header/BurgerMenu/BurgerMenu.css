@@ -19,7 +19,7 @@
 	z-index: 1;
 }
 
-.burger__button {
+.burger-menu__button {
 	border: 0;
 	background-color: inherit;
 	cursor: pointer;
