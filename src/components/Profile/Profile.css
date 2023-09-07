@@ -66,6 +66,7 @@
 .profile__btn_red {
 	color: #EE3465;
 	font-weight: 500;
+	margin-bottom: 40px;
 }
 
 @media screen and (max-width: 820px) {

@@ -11,7 +11,7 @@ function MoviesCardList({sampleItems}) {
           <MoviesCard key={index} />
         ))}
       </section>
-      <button className="movies-card-list__button-more">Еще</button>
+      <button className="button-more">Еще</button>
     </>
   );
 }

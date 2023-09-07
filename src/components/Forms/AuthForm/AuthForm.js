@@ -1,7 +1,6 @@
-import React from 'react'; // ?????????
-import { useForm } from "react-hook-form";
+//import React from 'react'; 
+//import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
-
 import "./AuthForm.css";
 import Logo from "../../Logo/Logo";
 
@@ -11,19 +10,10 @@ function AuthForm({
   question, 
   navLink, 
   navLinkTitle, 
-  children 
+  children,
+  onSubmit,
+  isValid,
 }) {
-  const requiredMessage = "Заполните это поле.";
-  const minLengthMessage = "Минимум 3 символа";
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i;
-  const emailMinLengthMessage = "Минимум 6 символов";
-  const emailMaxLenghtMessage = "Электронная почта должна содержать не более 40 символов";
-  const emailPatternMessage = "Адрес электронной почты должен содержать символ ' @ ' ";
-
-  const {
-    register,
-    formState: { errors, isValid },
-  } = useForm({ mode: "onChange" });
 
   return (
       <div className="auth-form">
@@ -33,60 +23,16 @@ function AuthForm({
               <Logo />
               <h2 className="auth-form__title">{title}</h2>
             </div>
-            <form className="auth-form__form" name="form__auth">
+            <form className="auth-form__form" onSubmit={onSubmit} id="form__auth">
               {children}
-              <label className="auth-form__label">E-mail</label>
-              <input
-                {...register("email", {
-                  required: requiredMessage,
-                  minLength: {
-                    value: 6,
-                    message: emailMinLengthMessage,
-                  },
-                  maxLength: {
-                    value: 40,
-                    message: emailMaxLenghtMessage,
-                  },
-                  pattern: {
-                    value: emailRegex,
-                    message: emailPatternMessage,
-                  },
-                })}
-                id="email"
-                className={"auth-form__input"}
-                type="email"
-                placeholder={'pochta@yandex.ru'}
-              />
-              <div className="auth-form__error-message auth-form__error-message_active">
-                {errors?.email && <div>{errors?.email?.message}</div>}
-              </div>
-
-              <label className="auth-form__label">Пароль</label>
-              <input
-                id="password"
-                className="auth-form__input"
-                type="password"
-                placeholder={'Пароль'}
-                {...register("password", {
-                  required: requiredMessage,
-                  minLength: {
-                    value: 3,
-                    message: minLengthMessage,
-                  },
-                  maxLength: 40,
-                })}
-              />
-
-              <div className="auth-form__error-message auth-form__error-message_active">
-                {errors?.password && <div>{errors?.password?.message}</div>}
-              </div>
             </form>
           </div>
           <div>
             <button
-              className="auth-form__button"
+              className={`auth-form__button ${isValid ? '' : "auth-form__button_inactive"}`}
               type="submit"
               disabled={!isValid}
+              form="form__auth"
             >
               {buttonText}
             </button>

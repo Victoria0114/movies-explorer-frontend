@@ -35,9 +35,11 @@
 .tech__stack-box {
 	display: flex;
 	flex-wrap: wrap;
-	flex-direction: row;
+	/* flex-direction: row; */
 	gap: 10px;
 	padding-top: 100px;
+	justify-content: center;
+
 }
 
 .tech__stack {
@@ -99,6 +101,7 @@
 	.tech__stack-box {
 		padding: 50px 50px;
 		max-width: 180px;
+		justify-content: flex-start;
 	}
 
 }

@@ -1,6 +1,7 @@
 // https://api.nomoreparties.co/beatfilm-movies
 
 export const BASE_URL = 'https://api.nomoreparties.co/beatfilm-movies';
+
 const jsonHeaders = {
 	'Content-Type': 'application/json',
 	'Accept': 'application/json'
