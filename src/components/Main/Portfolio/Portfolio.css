@@ -56,12 +56,8 @@
 	padding-top: 100px;
 }
 
-.portfolio__github:hover {
-	opacity: 0.8;
-}
-
-.portfolio__apps-container:hover {
-	opacity: 0.8;
+.portfolio__github-link:hover {
+	opacity: 0.7;
 }
 
 .portfolio__links-title {
@@ -101,6 +97,9 @@
 	letter-spacing: -1.2px;
 	text-decoration: none;
 	cursor: pointer;
+}
+.portfolio__app-link:hover {
+	opacity: 0.7;
 }
 
 .portfolio__app-link_underline {
@@ -157,10 +156,6 @@
 		font-size: 28px;
 	}
 
-	.portfolio__app-link:hover {
-		opacity: 0.8;
-		color: aqua;
-	}
 	.portfolio__app-link_underline{
 		padding-bottom: 15px;
 	}
