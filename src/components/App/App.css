@@ -1,0 +1,10 @@
+.app{
+	font-family: 'Inter', Arial, sans-serif;
+	background-color: white;
+	color: black;
+	margin: 0 auto;
+	max-width: 1280px;
+	min-width: 320px;
+	min-height: 100vh;	
+	
+}
