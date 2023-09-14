@@ -1,5 +1,3 @@
-//import React from 'react'; 
-//import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
 import "./AuthForm.css";
 import Logo from "../../Logo/Logo";

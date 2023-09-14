@@ -1,6 +1,6 @@
 import '../AuthForm/AuthForm.css';
 
-export default function TextInput({ type, title, label, register, errors, placeholder, defaultValue }) {
+export default function TextInput ({ type, title, label, register, errors, placeholder, defaultValue }) {
   const namePattern = /^[a-zA-Zа-яА-Я\s-]*$/;
 
   return(

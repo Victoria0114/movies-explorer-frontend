@@ -14,7 +14,7 @@ export default function MailInput({ type, title, label, register, errors, placeh
             message: "Электронная почта должна содержать не менеее 6 символов",
           },
           maxLength: {
-            value: 6,
+            value: 40,
             message: "Электронная почта должна содержать не более 40 символов",
           },
           pattern: {

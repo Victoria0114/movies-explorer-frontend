@@ -2,7 +2,7 @@
 
 import { moviesServer } from "./constants";
 
-
+// const BASE_URL = "http://localhost:3001";
 const BASE_URL = "https://api.victoria.nomoreparties.co";
 
 const jsonHeaders = {
@@ -65,6 +65,18 @@ export function getSavedMovies() {
 			...jsonHeaders,
 			"Authorization": `Bearer ${localStorage.getItem('token')}`
 		}
+	})
+	.then(checkResponse)
+}
+
+export function changeUserData({ name, email }) {
+	return fetch(`${BASE_URL}/users/me`, {
+		method: 'PATCH',
+		headers: {
+			...jsonHeaders,
+			"Authorization": `Bearer ${localStorage.getItem('token')}`
+		},
+		body: JSON.stringify({ name, email })
 	})
 	.then(checkResponse)
 }

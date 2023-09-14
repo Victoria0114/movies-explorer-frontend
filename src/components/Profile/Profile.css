@@ -42,6 +42,15 @@
 .underline {
 	border-bottom: #E8E8E8 solid 1px;
 }
+.profile__input-container {
+	display: flex;
+	flex-direction: column;
+	width: 250px;
+	gap: 10px;
+}
+.hidden {
+	display: none;
+}
 
 .profile__buttons {
 	display: flex;
@@ -58,6 +67,10 @@
 	font-weight: 400;
 	cursor: pointer;
 }
+.profile__btn:hover {
+	opacity: 0.8;
+}
+
 .profile__edit-btn{
 	padding: 0;
 	background-color: inherit;
@@ -81,11 +94,12 @@
     max-width: 410px;
     width: 100%;
     height: 45px;
-    background-color: #FF6838
-	
+    background-color: #FF6838;
+	border-radius: 3px;
+	font-size: 13px;
 }
 
-.profile__bnt-save_non-active {
+.profile__save-button_disabled {
     color: #C2C2C2;
     background-color: #F8F8F8
 }
@@ -132,5 +146,8 @@
 
 	.profile__btn {
 		font-size: 12px;
+	}
+	.profile__input-container {
+		width: 200px;
 	}
 }
