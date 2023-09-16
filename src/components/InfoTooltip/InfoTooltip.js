@@ -22,11 +22,16 @@ function InfoTooltip({ name, isOpen, onClose, condition, handleOverlayClick, suc
 					</>
 				) : (
 					<>
-						<img className="popup__image_infotooltip" src={deniedLogo} alt={deniedTitle} />
-						<p className="popup__title_infotooltip">{deniedTitle}</p>
+					  <button
+					    className="popup__close-button"
+					    aria-label="Закрыть"
+					    type="button"
+					    onClick={onClose} 
+				      />
+					  <img className="popup__image_infotooltip" src={deniedLogo} alt={deniedTitle} />
+					  <p className="popup__title_infotooltip">{deniedTitle}</p>
 					</>
-				)
-				}
+				)}
 			</div>
 		</section>
 	)

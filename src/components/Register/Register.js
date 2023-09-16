@@ -20,17 +20,25 @@ export default function Register({ onRegister }) {
 		<AuthForm
 			title={'Добро пожаловать!'}
 			buttonText={'Зарегистрироваться'}
-			navLink={'/sign-in'}
+			navLink={'/signin'}
 			question={'Уже зарегистрированы?'}
 			navLinkTitle={"Войти"}
 			onSubmit={handleSubmit(submitData)}
 			isValid={isValid}
 		>
+			<TextInput
+			    type={'text'}
+				title={'name'}
+				label={'Имя'}
+				placeholder={'Ваше имя'}
+				register={register}
+				errors={errors}
+			/>
 			<MailInput
-			  type={'email'}
+			    type={'email'}
 				title={'email'}
-				label={'e-mail'}
-				placeholder={'e-mail'}
+				label={'E-mail'}
+				placeholder={'pochta@yandex.ru'}
 				register={register}
 				errors={errors}
 			/>
@@ -42,14 +50,6 @@ export default function Register({ onRegister }) {
 				register={register}
 				errors={errors}
 			/>
-			<TextInput
-			    type={'text'}
-				title={'name'}
-				label={'Имя'}
-				placeholder={'Имя'}
-				register={register}
-				errors={errors}
-			/>
 		</AuthForm>
 	);
-}	
+}

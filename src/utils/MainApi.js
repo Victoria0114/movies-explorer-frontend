@@ -1,9 +1,6 @@
 // описание запросов к нашему Api.
 
-import { moviesServer } from "./constants";
-
-// const BASE_URL = "http://localhost:3001";
-const BASE_URL = "https://api.victoria.nomoreparties.co";
+import { moviesServer, BASE_URL } from "./constants";
 
 const jsonHeaders = {
 	'Content-Type': 'application/json',
@@ -12,9 +9,11 @@ const jsonHeaders = {
 
 const checkResponse = (res) => {
 	if (res.ok) {
-		return res.json();
+	  return res.json();
 	}
-	return Promise.reject(`Ошибка: ${res.status}`);
+	return res.json().then((data) => {
+	  return Promise.reject(`Ошибка: ${data.message}`);
+	});
 }
 
 export const register = ({ name, email, password }) => {

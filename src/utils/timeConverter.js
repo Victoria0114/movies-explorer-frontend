@@ -7,4 +7,4 @@ export function timeConverter(mins) {
     } else {
       return `${hours}ч`;
     }
-  }
+}

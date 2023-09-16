@@ -4,7 +4,7 @@ import "./MoviesCard.css";
 import * as Api from '../../../utils/MainApi'
 import { moviesServer } from '../../../utils/constants'
 // import testMovieImg from '../../../images/avarus project.jpeg'
-import { timeConverter } from "../../../utils/timeConverter";
+// import { timeConverter } from "../../../utils/timeConverter";
 import { UserMoviesContext } from "../../../context/context";
 
 
@@ -12,42 +12,31 @@ function MoviesCard({ movie }) {
 	const location = useLocation();
 	const { userMovies, setUserMovies } = useContext(UserMoviesContext);
 	const { nameRU, duration, image, trailerLink } = movie;
-	const formattedDuration = useMemo(() => formatTime(duration), [duration]);
+	const modifiedDuration = useMemo(() => timeConverter(duration), [duration]);
 	const [isLiked, setIsLiked] = useState(false);
 	const isMoviesPath = location.pathname === "/movies";
 	const picture = isMoviesPath ? `${moviesServer}${image.url}` : image.url;
-
-	  //** стили для кнопки */
-	  const buttonText = isMoviesPath ? null : "✗";
-	  const baseButtonClassName = "card__btn";
-	  const likeButtonClassName = `card__like ${isLiked && "card__like_active"}`;
-	  const removeButtonClassName = "card__like_rm";
-	  
-	  const buttonClassName = ` ${baseButtonClassName} ${
+	const buttonText = isMoviesPath ? null : "✗";
+	const baseButtonClassName = "card__btn";
+	const likeButtonClassName = `card__like ${isLiked && "card__like_active"}`;
+	const removeButtonClassName = "card__like_rm";
+	const buttonClassName = ` ${baseButtonClassName} ${
 		isMoviesPath ? likeButtonClassName : removeButtonClassName
-	  }`;
+	}`;
 
-	// const handleLikeClick = () => setLike(true);
-	
-	// const cardLikeButtonClassName = (`movie-card__btn movie-card__like ${isLiked && 'movie-card__like_active'}`); 
-
-	// const button = urlPath.pathname === '/movies' ? 
-	// 	(<button class={cardLikeButtonClassName} type="submit" onClick={handleLikeClick}/>) :
-	// 	(<button className="movie-card__btn movie-card__like_rm" type="submit">&#x2717;</button>)
-	  // есть ли фильм в списке лайкнутых => установить начальное состояние isLiked
-	  useEffect(() => {
+	useEffect(() => {
 		setIsLiked(
 		  userMovies.some((userMovie) => userMovie.nameRU === movie.nameRU)
 		);
-	  }, [userMovies, movie.nameRU]);
+	}, [userMovies, movie.nameRU]);
 	
-	  function formatTime(duration) {
-		const hours = Math.floor(duration / 60);
-		const minutes = duration % 60;
+	function timeConverter(mins) {
+		const hours = Math.floor(mins / 60); 
+		const minutes = mins % 60;
 		return `${hours ? `${hours}ч` : ""} ${minutes}м`;
-	  }
-	
-	  function toggleLike() {
+	}
+
+	function toggleLike() {
 		//** ищем фильм в userMovies */
 		const savedMovie = userMovies.find((userMovie) => userMovie.nameRU === movie.nameRU);
 		if (!savedMovie) {
@@ -55,17 +44,16 @@ function MoviesCard({ movie }) {
 		} else {
 		  handleRemoveMovie(savedMovie);
 		}
-	  }
+	}
 	  
-	  function handleSaveMovie() {
+	function handleSaveMovie() {
 		Api
 		  .saveUserMovie(movie)
 		  .then(() => {
 			setIsLiked(true);
-			//** добавляем фильм в userMovies после сохранения */
 			setUserMovies([...userMovies, movie]);
 		  })
-		  .catch((err) => console.error(`Возникла ошибка ${err.message}`));
+		  .catch((err) => console.error(`Произошла ошибка ${err.message}`));
 	  }
 	  
 	  function handleRemoveMovie(movieToRemove) {
@@ -75,12 +63,14 @@ function MoviesCard({ movie }) {
 			setIsLiked(false);
 			setUserMovies(userMovies.filter((userMovie) => userMovie._id !== movieToRemove._id));
 		  })
-		  .catch((err) => console.error(`Возникла ошибка ${err.message}`));
+		  .catch((err) => console.error(`Произошла ошибка ${err.message}`));
 	  }
 	  
   return (
     <div className="movie-card">
-      <img src={picture} alt="" class="movie-card__image" />
+      <a href={trailerLink}>
+	    <img src={picture} alt={nameRU} class="movie-card__image" />
+	  </a>
       <div class="movie-card__header">
 			<div className="movie-card__header-wrapper">
 				<h2 class="movie-card__title">{nameRU}</h2>
@@ -92,7 +82,7 @@ function MoviesCard({ movie }) {
                    {buttonText}
                 </button>
 			</div>
-			<span className="movie-card__duration">{formattedDuration}</span>
+			<span className="movie-card__duration">{modifiedDuration}</span>
       </div>
     </div>
   );

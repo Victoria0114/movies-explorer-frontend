@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 import './Movies.css'
 import SearchForm from "./SearchForm/SearchForm";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
-// import * as moviesApi from "../../utils/MoviesApi";
-// import * as api from "../../utils/MainApi";
 
-function Movies({ isRequestError, isLoading, moviesList, getMovies }) {
+function Movies({ isRequestError, isLoading, moviesList, getMovies, getSavedMovies }) {
 	const [filteredMovies, setFilteredMovies] = useState([]);
 	const [searchQuery, setSearchQuery] = useState('');
 	const [isToggled, setIsToggled] = useState(false);
@@ -21,20 +19,22 @@ function Movies({ isRequestError, isLoading, moviesList, getMovies }) {
 	const localStorageIsToggled = localStorage.getItem("isToggled");
 
 	useEffect(() => {
-		getMovies();
-	  }, []);
+		if (moviesList.length === 0) {
+		  getMovies();
+		}
+	}, []);
+
+	useEffect(() => {
+		getSavedMovies();
+	}, []);
 	
-	  //** обновляем состояние isToggled из localStorage  */
-	  //** и возвращаем предыдущий поисковый запрос если он был */
-	  useEffect(() => {
+	useEffect(() => {
 		setToggleState();
 		handleLocalStorageData();
-	  }, [localStorageIsToggled]);
+	}, [localStorageIsToggled]);
 	
-	  //** изменение кол-ва карточек в зависимости от ширины экрана */
-	  useEffect(() => {
+	useEffect(() => {
 		updateDisplayCards();
-		//** динамическое изменение кол-ва карточек */
 		window.addEventListener("resize", () => {
 		  updateDisplayCards();
 		});
@@ -42,17 +42,17 @@ function Movies({ isRequestError, isLoading, moviesList, getMovies }) {
 		return () => {
 		  window.removeEventListener("resize", updateDisplayCards);
 		};
-	  }, [filteredMovies]);
+	}, [filteredMovies]);
 	  
-	  function setToggleState() {
+	function setToggleState() {
 		if (localStorageIsToggled) {
 		  setIsToggled(true);
 		} else {
 		  setIsToggled(false);
 		}
-	  }
+	}
 	
-	  function handleLocalStorageData() {
+	function handleLocalStorageData() {
 		if (localStorageMovies === null) {
 		  return;
 		}
@@ -62,9 +62,9 @@ function Movies({ isRequestError, isLoading, moviesList, getMovies }) {
 		: setFilteredMovies(localStorageMovies);
 	
 		setSearchQuery(formattedQuery);
-	  }
+	}
 	
-	  function updateDisplayCards() {
+	function updateDisplayCards() {
 		const screenWidth = window.innerWidth;
 	
 		if (screenWidth >= 1280) {
@@ -74,11 +74,9 @@ function Movies({ isRequestError, isLoading, moviesList, getMovies }) {
 		} else {
 		  setDisplayCards(5);
 		}
-	  }
+	}
 	
-	
-	  /** отправка формы поиска */
-	  function handleSearchSubmit() {
+	function handleSearchSubmit() {
 		const filtered = moviesList.filter((movie) => {
 		  const movieName = movie.nameRU || movie.nameEN;
 	
@@ -90,17 +88,15 @@ function Movies({ isRequestError, isLoading, moviesList, getMovies }) {
 		}
 		
 		setFilteredMovies(filtered);
-		// обновление localStorage при изменении filteredMovies
+
 		localStorage.setItem("moviesList", JSON.stringify(filtered));
 	  }
 	
-	  //** фильтрации короткометражных фильмов */
-	  function filterShortMovies() {
+	function filterShortMovies() {
 		return filteredMovies.filter((movie) => movie.duration < 40);
-	  }
+	}
 	  
-	  //** переключатель короткометражек */
-	  function handleToggleSwitch() {
+	function handleToggleSwitch() {
 		if (isToggled === false) {
 		  const shortMoviesList = filterShortMovies();
 		  setIsToggled(true);
@@ -112,21 +108,19 @@ function Movies({ isRequestError, isLoading, moviesList, getMovies }) {
 		  localStorage.removeItem('isToggled');
 		  localStorage.removeItem("shortMovies");
 		}
-	  }
+	}
 	
-	  //** запись значения в поиске в стейт-переменную */
-	  const handleSearchChange = (evt) => {
+	const handleSearchChange = (evt) => {
 		const value = evt.target.value;
 		setSearchQuery(value);
 		localStorage.setItem("query", JSON.stringify(value));
-	  };
+	};
 	
-	  //** добавление карточек из списка */
-	  const handleAddMoreCards = () => {
+	const handleAddMoreCards = () => {
 		setDisplayCards(
 		  window.innerWidth > 768 ? displayCards + 4 : displayCards + 2
 		);
-	  };
+	};
 
 	return(
 		<main className="movies">
@@ -137,6 +131,7 @@ function Movies({ isRequestError, isLoading, moviesList, getMovies }) {
 			  onSearchClick={handleSearchSubmit}
 			  onToggle={handleToggleSwitch}
 			  isToggled={isToggled}
+			  setFilteredMovies={setFilteredMovies}
 			/>
 			<MoviesCardList
 			  //sampleItems={16}

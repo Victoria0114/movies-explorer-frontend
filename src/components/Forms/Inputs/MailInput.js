@@ -1,7 +1,9 @@
 import '../AuthForm/AuthForm.css';
 
-export default function MailInput({ type, title, label, register, errors, placeholder, defaultValue }) {
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i;
+function MailInput({ type, title, label, register, errors, placeholder, defaultValue }) {
+  // const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i;
+  // const emailPattern2 = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
   return(
     <>
@@ -18,7 +20,7 @@ export default function MailInput({ type, title, label, register, errors, placeh
             message: "Электронная почта должна содержать не более 40 символов",
           },
           pattern: {
-            value: emailRegex,
+            value: regex,
             massage: "Адрес электронной почты должен содержать символ ' @ ' "
           }
         })}
@@ -34,3 +36,5 @@ export default function MailInput({ type, title, label, register, errors, placeh
     </>
   );
 }
+
+export default MailInput;

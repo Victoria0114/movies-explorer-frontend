@@ -1,13 +1,11 @@
 import React from "react";
-
 import "./Header.css";
 import Navigation from "./Navigation/Navigation";
 import BurgerMenu from "./BurgerMenu/BurgerMenu";
 import { NavLink, useLocation } from "react-router-dom";
-
 import Logo from "../Logo/Logo";
 
-function Header({ loggedIn }) {
+function Header({ isLoggedIn }) {
   const url = useLocation();
 
   const headerStyle =
@@ -17,7 +15,7 @@ function Header({ loggedIn }) {
       ? "header_movies-logged-in"
       : "header_main-logged-in";
 
-  const profileMarkup = loggedIn ? (
+  const profileMarkup = isLoggedIn ? (
     <NavLink to="/profile" className="header__button header__button_account">
       Аккаунт
     </NavLink>
@@ -33,12 +31,12 @@ function Header({ loggedIn }) {
   );
 
   return (
-    <header className={`header ${loggedIn ? headerStyle : ""}`}>
+    <header className={`header ${isLoggedIn ? headerStyle : ""}`}>
       <div className="header__container">
         <Logo />
-        {loggedIn ? <Navigation /> : null}
+        {isLoggedIn ? <Navigation /> : null}
         {profileMarkup}
-        {loggedIn ? <BurgerMenu /> : null}
+        {isLoggedIn ? <BurgerMenu /> : null}
       </div>
     </header>
   );

@@ -22,14 +22,13 @@ function App() {
   const navigate = useNavigate();
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [succesMessage, setSuccesMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const [userMovies, setUserMovies] = useState([]);
-
   const [isInfoPopupOpen, setIsInfoPopupOpen] = useState(false);
-  const [isProfileChangePopupOpen, setIProfileChangePopupOpen] = useState(false);
+  // const [isProfileChangePopupOpen, setIProfileChangePopupOpen] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
-  const [isUserDataChanged, setUserDataChanged] = useState(false);
-
+  // const [isUserDataChanged, setUserDataChanged] = useState(false);
   const [moviesList, setMoviesList] = useState([]);
   const [isRequestError, setRequestError] = useState(false);
   const [isLoading, setLoading] = useState(true);
@@ -39,11 +38,7 @@ function App() {
   const showHeader = validHeaderPaths.includes(location.pathname);
   const showFooter = validFooterPaths.includes(location.pathname);
   
-  const handleError = (err) => {
-    setErrorMessage(err);
-    setIsInfoPopupOpen(true);
-  }
-
+ 
   useEffect(() => {
     handleTokenCheck();
   }, []);
@@ -54,7 +49,11 @@ function App() {
     }
   }, [isLoggedIn]); 
 
-  //** проверка валидности токена */
+  const handleError = (err) => {
+    setErrorMessage(err);
+    setIsInfoPopupOpen(true);
+  }
+
   function handleTokenCheck() {
     const token = localStorage.getItem("token");
 
@@ -68,7 +67,6 @@ function App() {
     }
   }
   
-  //** данные пользователя из БД */
   function getUserData() {
     Api
       .getUserData()
@@ -78,7 +76,6 @@ function App() {
       .catch(handleError);
   }
 
-  //** получить фильмы из отдельной БД  */
   function getMovies() {
     MoviesApi
       .getMovies()
@@ -89,10 +86,10 @@ function App() {
       .catch(() => {
         setLoading(false);
         setRequestError(true);
+        handleError();
     });
   }
 
-  //** получить фильмы из избранного  */
   function getSavedMovies() {
     Api
       .getSavedMovies()
@@ -106,16 +103,11 @@ function App() {
     Api
       .register({ name, email, password })
       .then(() => {
+        handleLogin({ email, password });
         setIsRegistered(true);
-        setIsInfoPopupOpen(true);
-        navigate("/movies");
-        setTimeout(() => {
-          setIsInfoPopupOpen(false);
-        }, 2000);
+        openSuccesPopup("Вы успешно зарегистрировались");
       })
-      .catch(() => {
-        handleError();
-      });
+      .catch(handleError);
   }
 
   function handleLogin({ email, password }) {
@@ -123,9 +115,9 @@ function App() {
       .login({ email, password })
       .then((data) => {
         localStorage.setItem("token", data.token);
-        localStorage.setItem("isLoggedIn", true)
-        setLoggedIn(true);
+        localStorage.setItem("isLoggedIn", true);
         navigate("/movies");
+        setLoggedIn(true);
       })
       .catch(handleError);
   }
@@ -141,18 +133,26 @@ function App() {
       .changeUserData({ name, email })
       .then((data) => {
         setCurrentUser(data);
-        setUserDataChanged(true);
-        setIProfileChangePopupOpen(true);
-        setTimeout(() => {
-          setIProfileChangePopupOpen(false);
-        }, 2000);
+        // setUserDataChanged(true);
+        // setIProfileChangePopupOpen(true);
+        // setTimeout(() => {
+        //   setIProfileChangePopupOpen(false);
+        // }, 2000);
       })
       .catch(handleError);
   }
 
+  function openSuccesPopup(message) {
+    setSuccesMessage(message);
+    setIsInfoPopupOpen(true);
+    setTimeout(() => {
+      setIsInfoPopupOpen(false);
+    }, 3000);
+  }
+
   function handleClosePopup() {
     setIsInfoPopupOpen(false);
-    setIProfileChangePopupOpen(false);
+    // setIProfileChangePopupOpen(false);
   }
 
   return (
@@ -161,23 +161,22 @@ function App() {
         <CurrentUserContext.Provider value={{currentUser, setCurrentUser}}>
           {showHeader && <Header loggedIn={isLoggedIn} />}
           <Routes>
-            <Route 
-              path="/" 
-              element={<Main />} 
-            />
             {!isLoggedIn &&
             <>
             <Route 
-              path="/sign-up" 
-              element={<Register onRegister={handleRegister} />} 
+              path="/signup" 
+              element={<Register onRegister={handleRegister} isRegistered={isRegistered}/>} 
             />
             <Route 
-              path="/sign-in" 
+              path="/signin" 
               element={<Login handleLogin={handleLogin} />}
             />
             </>
             }
-
+            <Route 
+              path="/" 
+              element={<Main />} 
+            />
             <Route path="/profile" element={Profile} />
             <Route 
               path="/movies" 
@@ -224,7 +223,7 @@ function App() {
       <InfoTooltip
         isOpen={isInfoPopupOpen}
         condition={isRegistered}
-        successTitle={'Регистрация прошла успешно!'}
+        successTitle={succesMessage}
         deniedTitle={errorMessage}
         onClose={handleClosePopup}
       />
